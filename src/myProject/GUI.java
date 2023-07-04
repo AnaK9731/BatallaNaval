@@ -43,7 +43,9 @@ public class GUI extends JFrame {
      * This method is used to set up the default JComponent Configuration,
      * create Listener and control Objects used for the GUI class
      */
-    private void initGUI() {
+    private void initGUI () {
+
+
 
         escucha = new Escucha(); //Create listener object and control object
         panelNorte = new JPanel();
@@ -96,7 +98,7 @@ public class GUI extends JFrame {
 // Configuración del botón "fragata"
         fragata = new JButton();
         buttonGroup.add(fragata);
-        ImageIcon icono = new ImageIcon("C:/Users/tylum/IdeaProjects/BatallaNaval/src/recursos/fragata.png");
+        ImageIcon icono = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/fragata.png");
         Image imagen = icono.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         fragata.setIcon(new ImageIcon(imagen));
         fragata.setBackground(new Color(79, 192, 201));
@@ -107,34 +109,36 @@ public class GUI extends JFrame {
 // Configuración del botón "destructor"
         destructor = new JButton();
         buttonGroup.add(destructor);
-        ImageIcon icono2 = new ImageIcon("C:/Users/tylum/IdeaProjects/BatallaNaval/src/recursos/destructor.png");
+        ImageIcon icono2 = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/destructor.png");
         Image imagen2 = icono2.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         destructor.setIcon(new ImageIcon(imagen2));
         destructor.setBackground(new Color(79, 192, 201));
         destructor.setFocusable(false);
         destructor.setBorder(null);
+        destructor.addActionListener(escucha);
 
 
 // Configuración del botón "PortaAviones"
         portaAviones = new JButton();
         buttonGroup.add(portaAviones);
-        ImageIcon icono3 = new ImageIcon("C:/Users/tylum/IdeaProjects/BatallaNaval/src/recursos/Portaavion.png");
+        ImageIcon icono3 = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Portaavion.png");
         Image imagen3 = icono3.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         portaAviones.setIcon(new ImageIcon(imagen3));
         portaAviones.setBackground(new Color(79, 192, 201));
         portaAviones.setFocusable(false);
         portaAviones.setBorder(null);
+        portaAviones.addActionListener(escucha);
 
 // Configuración del botón "Submarino"
         submarino = new JButton();
         buttonGroup.add(submarino);
-        ImageIcon icono4 = new ImageIcon("C:/Users/tylum/IdeaProjects/BatallaNaval/src/recursos/submarino.png");
+        ImageIcon icono4 = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/submarino.png");
         Image imagen4 = icono4.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         submarino.setIcon(new ImageIcon(imagen4));
         submarino.setBackground(new Color(79, 192, 201));
         submarino.setFocusable(false);
         submarino.setBorder(null);
-
+        submarino.addActionListener(escucha);
 
 // Configuración del panel panelCentro
         panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.Y_AXIS));
@@ -238,34 +242,130 @@ public class GUI extends JFrame {
     private class Escucha implements ActionListener, MouseListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String imagePath1 = "C:\\Users\\tylum\\IdeaProjects\\BatallaNaval\\src\\recursos\\Iconfragata.png";
-            String imagePath2 = "C:\\Users\\tylum\\IdeaProjects\\BatallaNaval\\src\\recursos\\Iconfragata2.png";
+            if (e.getSource() == fragata) {
+                String imagePath1 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Iconfragata.png";
+                String imagePath2 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Iconfragata2.png";
 
-            // Crear los botones con las imágenes
-            JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
+                // Crear los botones con las imágenes
+                JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
 
-            // Crear el panel que contendrá los botones
-            JPanel panel = new JPanel();
-            for (JToggleButton button : buttons) {
-                panel.add(button);
+                // Crear el panel que contendrá los botones
+                JPanel panel = new JPanel();
+                for (JToggleButton button : buttons) {
+                    panel.add(button);
+                }
+                // Mostrar el JOptionPane personalizado
+                int option = JOptionPane.showOptionDialog(null, panel, "Escoge la posición de tu fragata:",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        buttons, null);
+                //if para dar seleccionar
+                if (option == 0) {
+                    // El usuario seleccionó el primer botón (imagen vertical)
+                    if (buttons[0].isSelected()) {
+                    } else {
+                    }
+                    // El usuario seleccionó el primer botón (imagen horizontal)
+                } else if (option == 1) {
+                    if (buttons[1].isSelected()) {
+                    } else {
+                    }
+
+                }
             }
 
-            // Mostrar el JOptionPane personalizado
-            int option = JOptionPane.showOptionDialog(null, panel, "Escoge la posición de tu nave:",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                    buttons, null);
+            if (e.getSource() == destructor) {
+                String imagePath1 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Icondestructor .png";
+                String imagePath2 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Icondestructor2.png";
 
-            if (option == 0) {
-                // El usuario seleccionó el primer botón (imagen vertical)
-                if (buttons[0].isSelected()) {
-                } else { }
-                // El usuario seleccionó el primer botón (imagen horizontal)
-            } else if (option == 1) {
-                if (buttons[1].isSelected()) {
-                                    } else { }
+                // Crear los botones con las imágenes
+                JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
+
+                // Crear el panel que contendrá los botones
+                JPanel panel = new JPanel();
+                for (JToggleButton button : buttons) {
+                    panel.add(button);
+                }
+                // Mostrar el JOptionPane personalizado
+                int option = JOptionPane.showOptionDialog(null, panel, "Escoge la posición de tu destructor:",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        buttons, null);
+                //if para dar seleccionar
+                if (option == 0) {
+                    // El usuario seleccionó el primer botón (imagen vertical)
+                    if (buttons[0].isSelected()) {
+                    } else {
+                    }
+                    // El usuario seleccionó el primer botón (imagen horizontal)
+                } else if (option == 1) {
+                    if (buttons[1].isSelected()) {
+                    } else {
+                    }
+
+                }
+            }
+
+            if (e.getSource() == portaAviones) {
+                    String imagePath1 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconportavion.png";
+                    String imagePath2 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconportavion2.png";
+
+                    // Crear los botones con las imágenes
+                    JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
+
+                    // Crear el panel que contendrá los botones
+                    JPanel panel = new JPanel();
+                    for (JToggleButton button : buttons) {
+                        panel.add(button);
+                    }
+                    // Mostrar el JOptionPane personalizado
+                    int option = JOptionPane.showOptionDialog(null, panel, "Escoge la posición de tu Porta Aviones:",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            buttons, null);
+                    //if para dar seleccionar
+                    if (option == 0) {
+                        // El usuario seleccionó el primer botón (imagen vertical)
+                        if (buttons[0].isSelected()) {
+                        } else {
+                        }
+                        // El usuario seleccionó el primer botón (imagen horizontal)
+                    } else if (option == 1) {
+                        if (buttons[1].isSelected()) {
+                        } else {
+                        }
+
+                    }
+                }
+
+            if (e.getSource() == submarino) {
+                String imagePath1 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconsubmarino.png";
+                String imagePath2 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconsubmarino2.png";
+
+                // Crear los botones con las imágenes
+                JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
+
+                // Crear el panel que contendrá los botones
+                JPanel panel = new JPanel();
+                for (JToggleButton button : buttons) {
+                    panel.add(button);
+                }
+                // Mostrar el JOptionPane personalizado
+                int option = JOptionPane.showOptionDialog(null, panel, "Escoge la posición de tu submarino:",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        buttons, null);
+                //if para dar seleccionar
+                if (option == 0) {
+                    // El usuario seleccionó el primer botón (imagen vertical)
+                    if (buttons[0].isSelected()) {
+                    } else {
+                    }
+                    // El usuario seleccionó el primer botón (imagen horizontal)
+                } else if (option == 1) {
+                    if (buttons[1].isSelected()) {
+                    } else {
+                    }
+
+                }
             }
         }
-
 
 
         @Override
@@ -297,6 +397,8 @@ public class GUI extends JFrame {
     private JToggleButton[] createToggleButtons(String imagePath1, String imagePath2) {
         JToggleButton button1 = new JToggleButton(new ImageIcon(imagePath1));
         JToggleButton button2 = new JToggleButton(new ImageIcon(imagePath2));
+
+
 
         button1.setPreferredSize(new Dimension(200, 200));
         button2.setPreferredSize(new Dimension(200, 200));
