@@ -25,6 +25,7 @@ public class GUI extends JFrame {
     private Escucha escucha;
 
 
+
     public GUI() {
 
         initGUI();
@@ -77,7 +78,6 @@ public class GUI extends JFrame {
         label.setLeftShadow(1, 1, Color.WHITE);
         label.setRightShadow(1, 1, Color.gray);
         label.setForeground(new Color(17, 45, 101));
-        ;
         label.setFont(label.getFont().deriveFont(48f));
         Box top = Box.createHorizontalBox();
         top.add(Box.createHorizontalStrut(10));
@@ -87,10 +87,68 @@ public class GUI extends JFrame {
 
         //TABLERO DE JUEGO
         panelEste.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 60));
-        panelEste.setBorder(new TitledBorder(new EtchedBorder(), "PANEL DE JUEGO"));
+        //GRID DE TABLERO 1
+        JPanel panel1 = new JPanel();
+        GridLayout layout1 = new GridLayout(11, 11); // 11 filas, 11 columnas (para la numeración)
+        panel1.setLayout(layout1);
+        panel1.setPreferredSize(new Dimension(450, 450));
+        panel1.setBackground(new Color(79, 192, 201));
+        // Agregar etiquetas de columna (números)
+        panel1.add(new JLabel("")); // Celda vacía en la esquina superior izquierda
 
-        //TABLERO DE NAVAL SHIP
-        panelCentro.setLayout(new GridLayout(1, 1, 0, 100));
+        for (char c = 'A'; c <= 'J'; c++) {
+            JLabel label1 = new JLabel(Character.toString(c));
+            label.setHorizontalAlignment(JLabel.CENTER);
+            panel1.add(label1);
+        }
+        // Agregar componentes a la cuadrícula
+        for (int i = 0; i < 10; i++) {
+            JLabel label1 = new JLabel(Integer.toString(i + 1));
+            label.setHorizontalAlignment(JLabel.CENTER);
+            panel1.add(label1);
+
+            for (int j = 0; j < 10; j++) {
+                JButton button = new JButton();
+                button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                button.setBackground(new Color(15, 96, 141));
+                panel1.add(button);
+            }
+        }
+
+        // Panel 2
+        JPanel panel2 = new JPanel();
+        GridLayout layout2 = new GridLayout(11, 11); // 11 filas, 11 columnas (para la numeración)
+        panel2.setLayout(layout2);
+        panel2.setPreferredSize(new Dimension(450, 450));
+        panel2.setBackground(new Color(79, 192, 201));
+        // Agregar etiquetas de columna (números)
+        panel2.add(new JLabel("")); // Celda vacía en la esquina superior izquierda
+
+        for (char c = 'A'; c <= 'J'; c++) {
+        JLabel label2 = new JLabel(Character.toString(c));
+        label2.setHorizontalAlignment(JLabel.CENTER);
+        panel2.add(label2);
+        }
+        // Agregar componentes a la cuadrícula
+        for (int i = 0; i < 10; i++) {
+            JLabel label2 = new JLabel(Integer.toString(i + 1));
+            label2.setHorizontalAlignment(JLabel.CENTER);
+            panel2.add(label2);
+
+            for (int j = 0; j < 10; j++) {
+                JButton button = new JButton();
+                button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                button.setBackground(new Color(15, 130, 140));
+                panel2.add(button);
+            }
+        }
+        // Agregar los paneles al contenedor principal
+        JPanel container = new JPanel(new BorderLayout());
+        container.add(panel1, BorderLayout.WEST);
+        container.add(panel2, BorderLayout.EAST);
+        panelEste.add(container, BorderLayout.CENTER);
+        panelEste.setVisible(true);
+
 
         // BOTONES-FICHAS
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -274,7 +332,7 @@ public class GUI extends JFrame {
             }
 
             if (e.getSource() == destructor) {
-                String imagePath1 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Icondestructor .png";
+                String imagePath1 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Icondestructor .png";
                 String imagePath2 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Icondestructor2.png";
 
                 // Crear los botones con las imágenes
