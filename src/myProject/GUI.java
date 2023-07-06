@@ -5,10 +5,7 @@ import java.awt.*;
 import java.awt.BorderLayout;
 import javax.swing.border.*;
 import javax.swing.JLabel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 //imports para el Rich JLabel
 
@@ -23,6 +20,8 @@ public class GUI extends JFrame {
     private JPanel panelNorte, panelSur, panelEste, panelCentro;
     private JButton fragata, destructor, submarino, portaAviones;
     private Escucha escucha;
+    private boolean position;
+
 
 
 
@@ -112,6 +111,7 @@ public class GUI extends JFrame {
                 button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 button.setBackground(new Color(15, 96, 141));
                 panel1.add(button);
+                button.addMouseMotionListener(escucha);
             }
         }
 
@@ -140,6 +140,8 @@ public class GUI extends JFrame {
                 button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 button.setBackground(new Color(15, 130, 140));
                 panel2.add(button);
+                button.addMouseMotionListener(escucha);
+                button.addMouseListener(escucha);
             }
         }
         // Agregar los paneles al contenedor principal
@@ -148,6 +150,7 @@ public class GUI extends JFrame {
         container.add(panel2, BorderLayout.EAST);
         panelEste.add(container, BorderLayout.CENTER);
         panelEste.setVisible(true);
+        panelEste.addMouseMotionListener(escucha);
 
 
         // BOTONES-FICHAS
@@ -156,7 +159,7 @@ public class GUI extends JFrame {
 // Configuración del botón "fragata"
         fragata = new JButton();
         buttonGroup.add(fragata);
-        ImageIcon icono = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/fragata.png");
+        ImageIcon icono = new ImageIcon("src/recursos/fragata.png");
         Image imagen = icono.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         fragata.setIcon(new ImageIcon(imagen));
         fragata.setBackground(new Color(79, 192, 201));
@@ -167,7 +170,7 @@ public class GUI extends JFrame {
 // Configuración del botón "destructor"
         destructor = new JButton();
         buttonGroup.add(destructor);
-        ImageIcon icono2 = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/destructor.png");
+        ImageIcon icono2 = new ImageIcon("src/recursos/destructor.png");
         Image imagen2 = icono2.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         destructor.setIcon(new ImageIcon(imagen2));
         destructor.setBackground(new Color(79, 192, 201));
@@ -179,7 +182,7 @@ public class GUI extends JFrame {
 // Configuración del botón "PortaAviones"
         portaAviones = new JButton();
         buttonGroup.add(portaAviones);
-        ImageIcon icono3 = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Portaavion.png");
+        ImageIcon icono3 = new ImageIcon("src/recursos/Portaavion.png");
         Image imagen3 = icono3.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         portaAviones.setIcon(new ImageIcon(imagen3));
         portaAviones.setBackground(new Color(79, 192, 201));
@@ -190,7 +193,7 @@ public class GUI extends JFrame {
 // Configuración del botón "Submarino"
         submarino = new JButton();
         buttonGroup.add(submarino);
-        ImageIcon icono4 = new ImageIcon("C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/submarino.png");
+        ImageIcon icono4 = new ImageIcon("src/recursos/submarino.png");
         Image imagen4 = icono4.getImage().getScaledInstance(400, 135, Image.SCALE_SMOOTH);
         submarino.setIcon(new ImageIcon(imagen4));
         submarino.setBackground(new Color(79, 192, 201));
@@ -211,8 +214,17 @@ public class GUI extends JFrame {
         panelEste.setPreferredSize(new Dimension(1000, 60));
         panelCentro.setPreferredSize(new Dimension(300, 100));
 
+        //Se agrega el listener al panel este
+
+
 
         //JLABEL CLASSs
+    }
+    public void posicionHorizontal(){
+
+    }
+    public void posiciobVertical(){
+
     }
 
     class RichJLabel extends JLabel {
@@ -297,12 +309,12 @@ public class GUI extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
-    private class Escucha implements ActionListener, MouseListener {
+    private class Escucha implements ActionListener, MouseListener, MouseMotionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == fragata) {
-                String imagePath1 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Iconfragata.png";
-                String imagePath2 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Iconfragata2.png";
+                String imagePath1 = "src/recursos/Iconfragata.png";
+                String imagePath2 = "src/recursos/Iconfragata2.png";
 
                 // Crear los botones con las imágenes
                 JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
@@ -332,8 +344,8 @@ public class GUI extends JFrame {
             }
 
             if (e.getSource() == destructor) {
-                String imagePath1 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Icondestructor .png";
-                String imagePath2 = "C:/Users/tylum/Documents/GitHub/BatallaNaval/src/recursos/Icondestructor2.png";
+                String imagePath1 = "src/recursos/Icondestructor .png";
+                String imagePath2 = "src/recursos/Icondestructor2.png";
 
                 // Crear los botones con las imágenes
                 JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
@@ -363,8 +375,8 @@ public class GUI extends JFrame {
             }
 
             if (e.getSource() == portaAviones) {
-                    String imagePath1 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconportavion.png";
-                    String imagePath2 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconportavion2.png";
+                    String imagePath1 = "src/recursos/Iconportavion.png";
+                    String imagePath2 = "src/recursos/Iconportavion2.png";
 
                     // Crear los botones con las imágenes
                     JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
@@ -394,8 +406,8 @@ public class GUI extends JFrame {
                 }
 
             if (e.getSource() == submarino) {
-                String imagePath1 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconsubmarino.png";
-                String imagePath2 = "C:\\Users\\tylum\\Documents\\GitHub\\BatallaNaval\\src\\recursos\\Iconsubmarino2.png";
+                String imagePath1 = "src/recursos/Iconsubmarino.png";
+                String imagePath2 = "src/recursos/Iconsubmarino2.png";
 
                 // Crear los botones con las imágenes
                 JToggleButton[] buttons = createToggleButtons(imagePath1, imagePath2);
@@ -448,6 +460,16 @@ public class GUI extends JFrame {
 
         @Override
         public void mouseExited(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
 
         }
     }
