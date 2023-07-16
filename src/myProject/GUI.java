@@ -18,9 +18,10 @@ public class GUI extends JFrame {
 
 
     private JPanel panelNorte, panelSur, panelEste, panelCentro;
-    private JButton fragata, destructor, submarino, portaAviones;
+    private JButton fragata, destructor, submarino, portaAviones, INICIA;
     private Escucha escucha;
-    private boolean position;
+    private Game game;
+
 
 
 
@@ -68,7 +69,22 @@ public class GUI extends JFrame {
         this.add(panelCentro, BorderLayout.CENTER);
 
         panelSur.setLayout(new FlowLayout(FlowLayout.CENTER, 250, 5));
-        panelSur.setBorder(new TitledBorder(new EtchedBorder(), "SDFSDF"));
+
+        INICIA = new JButton();
+        ImageIcon icono1 = new ImageIcon("src/recursos/boton-de-inicio.png");
+        Image inicia = icono1.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        INICIA.setIcon(new ImageIcon(inicia));
+        INICIA.setBackground(new Color(79, 192, 201));
+        INICIA.setFocusable(false);
+        INICIA.setBorder(null);
+        INICIA.addActionListener(escucha);
+
+// Configurar el layout del panelSur para ajustar automáticamente el tamaño del botón
+        panelSur.setLayout(new BorderLayout());
+        panelSur.add(INICIA, BorderLayout.CENTER);
+
+// Ajustar el tamaño del panelSur para que el botón se centre verticalmente
+        panelSur.setPreferredSize(new Dimension(400, 135));
 
 
         //CONFIGURACIÓN PANEL NORTE
@@ -213,10 +229,6 @@ public class GUI extends JFrame {
         panelNorte.setPreferredSize(new Dimension(100, 60));
         panelEste.setPreferredSize(new Dimension(1000, 60));
         panelCentro.setPreferredSize(new Dimension(300, 100));
-
-        //Se agrega el listener al panel este
-
-
 
         //JLABEL CLASSs
     }
